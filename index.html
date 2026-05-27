@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentAGuy - Premium Albanian Gentleman Rentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0708;
+  --surface: #1a1214;
+  --surface-2: #241a1e;
+  --border: #3a2830;
+  --text: #f4e8ec;
+  --text-muted: #a48992;
+  --accent: #e63946;
+  --accent-warm: #ff6b6b;
+  --accent-gold: #d4a848;
+  --accent-glow: rgba(230, 57, 70, 0.15);
+  --gold-glow: rgba(212, 168, 72, 0.12);
+  --success: #22c55e;
+  --chat-user: #5f1e2e;
+  --chat-bot: #221a1e;
+  --radius: 14px;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ANIMATED BG TEXTURE */
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(230,57,70,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(212,168,72,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(230,57,70,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10, 7, 8, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-logo em {
+  font-style: italic;
+  color: var(--accent-gold);
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex; gap: 2rem; align-items: center;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.nav-cta {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+}
+.nav-cta:hover {
+  background: var(--accent-warm);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(230,57,70,0.3);
+}
+
+/* HERO */
+.hero {
+  padding: 10rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 50px; right: 10%; 
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  position: relative;
+  margin-bottom: 2rem;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.08;
+  margin-bottom: 1.25rem;
+  position: relative;
+  font-weight: 900;
+}
+.hero h1 em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 700;
+}
+.hero h1 .gold { color: var(--accent-gold); }
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  position: relative;
+  font-weight: 300;
+}
+
+.hero-stats {
+  display: flex; justify-content: center; gap: 3rem;
+  position: relative;
+  margin-top: 3rem;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat .num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent-gold);
+}
+.hero-stat .label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* SECTION HEADINGS */
+.section-header {
+  margin-bottom: 2.5rem;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+.section-header h2 em { color: var(--accent); font-style: italic; }
+.section-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+/* GENTLEMEN CATALOG */
+.catalog {
+  padding: 2rem 2rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.75rem;
+}
+
+.guy-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.guy-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(230,57,70,0.15);
+}
+
+.guy-img {
+  height: 240px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.guy-img::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to top, var(--surface), transparent);
+}
+
+.guy-tag {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.guy-tag.gold {
+  background: linear-gradient(135deg, var(--accent-gold), #c49b38);
+}
+
+.guy-info { padding: 1.5rem; }
+
+.guy-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+.guy-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+.guy-nickname {
+  color: var(--accent-gold);
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.guy-stats {
+  display: flex; gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+.guy-stats span {
+  display: flex; align-items: center; gap: 0.3rem;
+}
+
+.guy-vibe {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.guy-services {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.service-tag {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.guy-signature {
+  font-size: 0.78rem;
+  color: var(--accent-warm);
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(230,57,70,0.06);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+}
+
+.guy-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.guy-price {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.guy-price strong {
+  font-size: 1.15rem;
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.btn-rent {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 0.55rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.btn-rent:hover {
+  background: var(--accent-warm);
+  box-shadow: 0 4px 16px rgba(230,57,70,0.3);
+  transform: translateY(-1px);
+}
+
+/* HOW IT WORKS */
+.how-it-works {
+  padding: 4rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.step-card:hover { border-color: var(--accent-gold); }
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--accent);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.step-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.step-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* TRUST BADGES */
+.trust {
+  padding: 3rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.trust-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+}
+.trust-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.trust-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+.trust-card p { font-size: 0.78rem; color: var(--text-muted); font-weight: 300; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 1;
+}
+footer .disclaimer {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════ */
+/*            CHATBOT STYLES          */
+/* ═══════════════════════════════════ */
+
+.chat-toggle {
+  position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #c0392b);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 28px rgba(230,57,70,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 1.6rem; color: white;
+}
+.chat-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 36px rgba(230,57,70,0.55);
+}
+.chat-toggle .badge {
+  position: absolute; top: -2px; right: -2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent-gold); border: 2px solid var(--bg);
+  animation: pulse 2s infinite;
+}
+
+.chat-window {
+  position: fixed; bottom: 104px; right: 24px; z-index: 1000;
+  width: 410px; max-height: 580px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  display: none; flex-direction: column;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+.chat-window.open { display: flex; }
+
+.chat-header {
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.chat-header-info { display: flex; align-items: center; gap: 0.75rem; }
+.chat-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-glow), var(--gold-glow));
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.chat-header-text h3 {
+  font-size: 0.9rem; font-weight: 700;
+  font-family: var(--font-display);
+}
+.chat-header-text p {
+  font-size: 0.7rem; color: var(--success);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.chat-header-text p::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--success);
+}
+.chat-close {
+  background: none; border: none; color: var(--text-muted);
+  cursor: pointer; font-size: 1.25rem; padding: 0.25rem;
+  transition: color 0.2s;
+}
+.chat-close:hover { color: var(--text); }
+
+.chat-messages {
+  flex: 1; overflow-y: auto;
+  padding: 1rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  min-height: 300px; max-height: 380px;
+}
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb {
+  background: var(--border); border-radius: 4px;
+}
+
+.msg {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  animation: msgIn 0.3s ease;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg.bot {
+  align-self: flex-start;
+  background: var(--chat-bot);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+.msg.user {
+  align-self: flex-end;
+  background: var(--chat-user);
+  border-bottom-right-radius: 4px;
+}
+.msg.error {
+  align-self: flex-start;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5;
+  border-bottom-left-radius: 4px;
+}
+
+.typing {
+  display: flex; gap: 4px; padding: 0.75rem 1rem;
+  align-self: flex-start;
+  background: var(--chat-bot);
+  border: 1px solid var(--border);
+  border-radius: 14px; border-bottom-left-radius: 4px;
+}
+.typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text-muted);
+  animation: typing 1.4s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+.chat-input-area {
+  padding: 0.75rem;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 0.5rem;
+}
+.chat-input {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--accent); }
+.chat-input::placeholder { color: var(--text-muted); }
+.chat-send {
+  background: linear-gradient(135deg, var(--accent), #c0392b);
+  border: none; border-radius: 12px;
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: white; font-size: 1.1rem;
+  transition: opacity 0.2s;
+}
+.chat-send:hover { opacity: 0.85; }
+.chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .chat-window { width: calc(100vw - 32px); right: 16px; bottom: 100px; }
+  .nav-links { display: none; }
+  .catalog-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-stats { gap: 1.5rem; }
+  .hero-stats .num { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo"><span>Rent</span>A<em>Guy</em></div>
+  </div>
+  <div class="nav-links">
+    <a href="#catalog">Our Gentlemen</a>
+    <a href="#how">How It Works</a>
+    <a href="#trust">Guarantees</a>
+    <button class="nav-cta" onclick="toggleChat()">Find My Match</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> AI Matchmaker Online Ask Me Anything</div>
+  <h1>Premium Albanian<br>Gentlemen, <em>on demand.</em></h1>
+  <p>Need a wedding date? A serenade? Someone to assemble your IKEA furniture shirtless? We've got your guy.</p>
+  
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">6</div>
+      <div class="label">Certified Gentlemen</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">2,847</div>
+      <div class="label">Happy Clients</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">100%</div>
+      <div class="label">Mama Approved</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog" id="catalog">
+  <div class="section-header">
+    <h2>Meet Our <em>Gentlemen</em></h2>
+    <p>Hand-picked, background-checked, and guaranteed to make your friends jealous.</p>
+  </div>
+
+  <div class="catalog-grid">
+
+    <!-- ARBEN -->
+    <div class="guy-card">
+      <div class="guy-img" style="background: linear-gradient(135deg, #2a1520, #1a2535);">
+        <span class="guy-tag">Most Romantic</span>
+        <span style="position:relative;z-index:1;">&#129333;</span>
+      </div>
+      <div class="guy-info">
+        <div class="guy-header">
+          <div class="guy-name">Arben Hoxha</div>
+          <div class="guy-nickname">"The Poet"</div>
+        </div>
+        <div class="guy-stats">
+          <span>&#128207; 6'1" / 185 lbs</span>
+          <span>&#127968; Prishtina</span>
+          <span>&#127874; 28</span>
+        </div>
+        <div class="guy-vibe">"Hopeless romantic with a philosophy degree he never uses"</div>
+        <div class="guy-services">
+          <span class="service-tag">Romantic Dinners</span>
+          <span class="service-tag">Love Poems</span>
+          <span class="service-tag">2AM Deep Talks</span>
+          <span class="service-tag">Bag Carrying</span>
+        </div>
+        <div class="guy-signature">&#10024; Will whisper Albanian poetry in your ear. You won't understand a word but you WILL blush.</div>
+        <div class="guy-footer">
+          <div class="guy-price">From <strong>$5</strong> /3 compliments</div>
+          <button class="btn-rent" onclick="toggleChat()">Rent Arben</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRITON -->
+    <div class="guy-card">
+      <div class="guy-img" style="background: linear-gradient(135deg, #1a2020, #25181e);">
+        <span class="guy-tag">Fan Favorite</span>
+        <span style="position:relative;z-index:1;">&#128170;</span>
+      </div>
+      <div class="guy-info">
+        <div class="guy-header">
+          <div class="guy-name">Driton Krasniqi</div>
+          <div class="guy-nickname">"The Machine"</div>
+        </div>
+        <div class="guy-stats">
+          <span>&#128207; 6'3" / 220 lbs</span>
+          <span>&#127968; Prishtina</span>
+          <span>&#127874; 32</span>
+        </div>
+        <div class="guy-vibe">"Gym bro who cries during Disney movies"</div>
+        <div class="guy-services">
+          <span class="service-tag">Wedding Dates</span>
+          <span class="service-tag">Bodyguard</span>
+          <span class="service-tag">Jar Opening</span>
+          <span class="service-tag">IKEA Assembly</span>
+        </div>
+        <div class="guy-signature">&#128166; Flexes casually while pretending to check the time. Your ex won't even make eye contact.</div>
+        <div class="guy-footer">
+          <div class="guy-price">From <strong>$3</strong> /jar opened</div>
+          <button class="btn-rent" onclick="toggleChat()">Rent Driton</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BESNIK -->
+    <div class="guy-card">
+      <div class="guy-img" style="background: linear-gradient(135deg, #201825, #18202a);">
+        <span class="guy-tag gold">4 Languages</span>
+        <span style="position:relative;z-index:1;">&#127908;</span>
+      </div>
+      <div class="guy-info">
+        <div class="guy-header">
+          <div class="guy-name">Besnik Shehu</div>
+          <div class="guy-nickname">"Golden Voice"</div>
+        </div>
+        <div class="guy-stats">
+          <span>&#128207; 5'10" / 165 lbs</span>
+          <span>&#127968; Gjakove</span>
+          <span>&#127874; 26</span>
+        </div>
+        <div class="guy-vibe">"Aspiring singer who knows every love song in 4 languages"</div>
+        <div class="guy-services">
+          <span class="service-tag">Serenades</span>
+          <span class="service-tag">Dirty Talk</span>
+          <span class="service-tag">Karaoke Wingman</span>
+          <span class="service-tag">Fake Proposals</span>
+        </div>
+        <div class="guy-signature">&#127925; Drops to one knee mid-song and makes eye contact with YOU specifically.</div>
+        <div class="guy-footer">
+          <div class="guy-price">From <strong>$15</strong> /dirty talk</div>
+          <button class="btn-rent" onclick="toggleChat()">Rent Besnik</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAMUR -->
+    <div class="guy-card">
+      <div class="guy-img" style="background: linear-gradient(135deg, #1e1a28, #281a1e);">
+        <span class="guy-tag gold">Premium</span>
+        <span style="position:relative;z-index:1;">&#129333;&#8205;&#9794;&#65039;</span>
+      </div>
+      <div class="guy-info">
+        <div class="guy-header">
+          <div class="guy-name">Flamur Berisha</div>
+          <div class="guy-nickname">"The Gentleman"</div>
+        </div>
+        <div class="guy-stats">
+          <span>&#128207; 5'11" / 175 lbs</span>
+          <span>&#127968; Gjakove</span>
+          <span>&#127874; 35</span>
+        </div>
+        <div class="guy-vibe">"Old-school charm, always overdressed, smells incredible"</div>
+        <div class="guy-services">
+          <span class="service-tag">Gala Companion</span>
+          <span class="service-tag">Wine Tasting</span>
+          <span class="service-tag">Meet The Parents</span>
+          <span class="service-tag">Slow Dancing</span>
+        </div>
+        <div class="guy-signature">&#127801; Pulls out your chair, orders in French, and somehow already knows your favorite flower.</div>
+        <div class="guy-footer">
+          <div class="guy-price">From <strong>$8</strong> /hand kiss</div>
+          <button class="btn-rent" onclick="toggleChat()">Rent Flamur</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KRESHNIK -->
+    <div class="guy-card">
+      <div class="guy-img" style="background: linear-gradient(135deg, #201e15, #1a2520);">
+        <span class="guy-tag">Party Animal</span>
+        <span style="position:relative;z-index:1;">&#128378;</span>
+      </div>
+      <div class="guy-info">
+        <div class="guy-header">
+          <div class="guy-name">Kreshnik Gashi</div>
+          <div class="guy-nickname">"Wild Card"</div>
+        </div>
+        <div class="guy-stats">
+          <span>&#128207; 5'9" / 170 lbs</span>
+          <span>&#127968; Gjilan</span>
+          <span>&#127874; 29</span>
+        </div>
+        <div class="guy-vibe">"Class clown energy, life of every party, chaos in human form"</div>
+        <div class="guy-services">
+          <span class="service-tag">Wedding Dancer</span>
+          <span class="service-tag">Comedy Massage</span>
+          <span class="service-tag">Party Hype</span>
+          <span class="service-tag">Birthday Prank</span>
+        </div>
+        <div class="guy-signature">&#127881; Arrives at the party. Within 10 minutes, somehow everyone knows his name.</div>
+        <div class="guy-footer">
+          <div class="guy-price">From <strong>$35</strong> /comedy massage</div>
+          <button class="btn-rent" onclick="toggleChat()">Rent Kreshnik</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENTIAN -->
+    <div class="guy-card">
+      <div class="guy-img" style="background: linear-gradient(135deg, #201815, #15201e);">
+        <span class="guy-tag gold">Chef's Kiss</span>
+        <span style="position:relative;z-index:1;">&#128104;&#8205;&#127859;</span>
+      </div>
+      <div class="guy-info">
+        <div class="guy-header">
+          <div class="guy-name">Gentian Leka</div>
+          <div class="guy-nickname">"The Chef"</div>
+        </div>
+        <div class="guy-stats">
+          <span>&#128207; 6'0" / 190 lbs</span>
+          <span>&#127968; Peje</span>
+          <span>&#127874; 31</span>
+        </div>
+        <div class="guy-vibe">"Will cook for you and stare at you eating with pure joy"</div>
+        <div class="guy-services">
+          <span class="service-tag">Private Chef</span>
+          <span class="service-tag">Meal Prep + Love Notes</span>
+          <span class="service-tag">Grape Feeding</span>
+          <span class="service-tag">Food Tours</span>
+        </div>
+        <div class="guy-signature">&#127858; Cooks you tave kosi and watches you take the first bite like it's the World Cup final.</div>
+        <div class="guy-footer">
+          <div class="guy-price">From <strong>$20</strong> /grape feeding</div>
+          <button class="btn-rent" onclick="toggleChat()">Rent Gentian</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="section-header">
+    <h2>How It <em>Works</em></h2>
+    <p>Three simple steps to your perfect Albanian gentleman experience.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h3>Tell Us What You Need</h3>
+      <p>Wedding date? Serenade? Someone to open jars and look pretty? Chat with our AI matchmaker and she'll find your perfect match.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h3>Pick Your Gentleman</h3>
+      <p>Browse our certified catalog. Read reviews. Compare signature moves. Fall a little bit in love with all of them (it's normal).</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h3>Enjoy the Experience</h3>
+      <p>Your gentleman arrives on time, smelling incredible, ready to make everyone at the party wonder "where did she FIND him?"</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <h3>Tell Your Friends</h3>
+      <p>You will. They'll ask. You'll pretend to be mysterious about it. Then you'll send them the link anyway. The cycle continues.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<section class="trust" id="trust">
+  <div class="section-header">
+    <h2>Our <em>Guarantees</em></h2>
+    <p>Because your happiness (and entertainment) is our top priority.</p>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-icon">&#128111;</div>
+      <h3>Mama Approved</h3>
+      <p>Every gentleman is personally approved by an actual Albanian mother. The highest standard known to humanity.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">&#128176;</div>
+      <h3>Satisfaction Guarantee</h3>
+      <p>Not happy? Next rental is 50% off. But honestly, when has an Albanian guy ever disappointed?</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">&#128737;</div>
+      <h3>Fully Vetted</h3>
+      <p>Background checked, vaccinated, and trained in the ancient art of being absolutely charming.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">&#129309;</div>
+      <h3>Strictly Respectful</h3>
+      <p>Entertainment and companionship only. Our gentlemen are professionals with impeccable manners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 RentAGuy &mdash; Premium Albanian Gentleman Rental Services</p>
+</footer>
+
+<!-- CHAT TOGGLE -->
+<button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+  &#128140;
+  <span class="badge"></span>
+</button>
+
+<!-- CHAT WINDOW -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">&#128131;</div>
+      <div class="chat-header-text">
+        <h3>Kiki's Matchmaking</h3>
+        <p>Online</p>
+      </div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">&#10005;</button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg bot">
+      Miredita, zemra! &#128140; Welcome to RentAGuy! I'm Kiki, your AI matchmaker. Tell me what you need a wedding date? A serenade? Someone to assemble furniture while looking gorgeous? I'll find your perfect Albanian gentleman!
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <input type="text" class="chat-input" id="chatInput"
+      placeholder="Tell Kiki what you're looking for..."
+      onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="chat-send" id="chatSend" onclick="sendMessage()">&#10084;</button>
+  </div>
+</div>
+
+<script>
+const chatWindow = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+let chatOpen = false;
+let conversationHistory = [];
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  chatWindow.classList.toggle('open', chatOpen);
+  if (chatOpen) chatInput.focus();
+}
+
+function addMessage(text, type) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + type;
+  if (type === 'error') {
+    div.innerHTML = '<div style="font-weight:700;margin-bottom:0.35rem;color:var(--accent);">&#9888; Oops!</div>' + text;
+  } else {
+    div.textContent = text;
+  }
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTyping() {
+  const div = document.createElement('div');
+  div.className = 'typing';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, 'user');
+  chatInput.value = '';
+  chatSend.disabled = true;
+  showTyping();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [
+          ...conversationHistory.map(h => ({ role: h.role, content: h.content })),
+          { role: 'user', content: text }
+        ]
+      })
+    });
+
+    removeTyping();
+
+    if (res.ok) {
+      const data = await res.json();
+      addMessage(data.reply, 'bot');
+      conversationHistory.push({ role: 'user', content: text });
+      conversationHistory.push({ role: 'assistant', content: data.reply });
+    } else {
+      addMessage('Kiki needs a moment even matchmakers need a coffee break! Try again?', 'bot');
+    }
+  } catch (err) {
+    removeTyping();
+    addMessage('Connection lost! The Albanian internet strikes again. Please try once more.', 'bot');
+  }
+
+  chatSend.disabled = false;
+  chatInput.focus();
+}
+
+// Auto-open chat after 3 seconds
+setTimeout(function() {
+  if (!chatOpen) toggleChat();
+}, 3000);
+</script>
+
+</body>
+</html>
